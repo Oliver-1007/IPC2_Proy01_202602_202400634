@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\raxtu\\ChapinWarriors\\ChapinWarriors.csproj",
+      "projectUniqueName": "C:\\Users\\raxtu\\IPC2_Proy01_202602_202400634\\ChapinWarriors\\ChapinWarriors.csproj",
       "projectName": "ChapinWarriors",
-      "projectPath": "C:\\Users\\raxtu\\ChapinWarriors\\ChapinWarriors.csproj",
+      "projectPath": "C:\\Users\\raxtu\\IPC2_Proy01_202602_202400634\\ChapinWarriors\\ChapinWarriors.csproj",
       "packagesPath": "C:\\Users\\raxtu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\raxtu\\ChapinWarriors\\obj\\",
+      "outputPath": "C:\\Users\\raxtu\\IPC2_Proy01_202602_202400634\\ChapinWarriors\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\raxtu\\AppData\\Roaming\\NuGet\\NuGet.Config"
