@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text;
 using ChapinWarriors.Models.Entidades;
 
-namespace ChapinWarriors.Servicios
+namespace ChapinWarriors.Services
 {
     public class GeneradorGraphviz
     {
