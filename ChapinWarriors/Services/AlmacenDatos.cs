@@ -27,8 +27,11 @@ namespace ChapinWarriors.Services
         {
             for(int i = 0; i < Robots.Longitud; i++)
             {
-                Robots.Actualizar(i, robot);
-                return;
+                if(Robots.Obtener(i).Nombre == robot.Nombre)
+                {
+                    Robots.Actualizar(i, robot);
+                    return;
+                }
             }
             Robots.Agregar(robot);
         }

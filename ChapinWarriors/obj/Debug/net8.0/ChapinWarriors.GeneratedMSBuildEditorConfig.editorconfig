@@ -18,20 +18,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\raxtu\IPC2_Proy01_202602_202400634\ChapinWarriors
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Configuracion/Cargar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhY2lvblxDYXJnYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Home/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Misiones/Resultado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlzaW9uZXNcUmVzdWx0YWRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Misiones/Seleccionar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlzaW9uZXNcU2VsZWNjaW9uYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/_ViewImports.cshtml]
@@ -41,7 +49,3 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/raxtu/IPC2_Proy01_202602_202400634/ChapinWarriors/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-trhl6g2na6

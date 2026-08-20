@@ -5,18 +5,18 @@ namespace ChapinWarriors.Models.Entidades
 {
     public enum TipoRobot
     {
-        ChapinRecause,
+        ChapinRescue,
         ChapinFighter
     }
     public abstract class Robot
     {
-        public string Nombre {get; set;}
+        public string Nombre {get; set;} ="";
         public abstract TipoRobot Tipo {get;}
     }
 
     public class RobotRescate : Robot
     {
-        public override TipoRobot Tipo => TipoRobot.ChapinRecause;
+        public override TipoRobot Tipo => TipoRobot.ChapinRescue;
     }
 
     public class RobotFighter : Robot
