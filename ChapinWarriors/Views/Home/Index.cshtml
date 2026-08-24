@@ -1,8 +1,19 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="portada">
+    <h1>Sistema de control - Chapin Warriors S.A.</h1>
+    <p>Gestiona ciudades en conflicto y ejecuta misiones de rescate de civiles o extraccion de recursos con los robots ChapinRescue y ChapinFighter.</p>
+
+    <div class="tarjetas">
+        <a class="tarjeta" href="@Url.Action("Cargar", "Configuracion")">
+            <h3>1. Cargar configuracion</h3>
+            <p>Sube el archivo XML con las ciudades (malla de celdas) y los robots disponibles.</p>
+        </a>
+        <a class="tarjeta" href="@Url.Action("Seleccionar", "Misiones")">
+            <h3>2. Ejecutar mision</h3>
+            <p>Elige una mision de rescate o de extraccion de recursos y observa la ruta resultante.</p>
+        </a>
+    </div>
 </div>

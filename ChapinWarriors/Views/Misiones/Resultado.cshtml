@@ -1,0 +1,30 @@
+@model ResultadoMision
+@{
+    ViewData["Title"] = "Resultado de la mision";
+    var ciudad = ViewBag.Ciudad as Ciudad;
+}
+
+<h2>Resultado de la mision</h2>
+
+@if (!Model.Exitosa)
+{
+    <div class="alerta alerta-error">
+        <strong>Mision Imposible</strong>
+        @if (!string.IsNullOrWhiteSpace(Model.Mensaje))
+        {
+            <p>@Model.Mensaje</p>
+        }
+    </div>
+}
+else
+{
+    @if (ViewBag.Svg != null)
+    {
+        <h3>Reporte Gráfico (Graphviz)</h3>
+        <div class="contenedor-svg">
+            @Html.Raw(ViewBag.Svg)
+        </div>
+    }
+}
+
+<a class="boton" href="@Url.Action("Seleccionar")">Ejecutar otra mision</a>

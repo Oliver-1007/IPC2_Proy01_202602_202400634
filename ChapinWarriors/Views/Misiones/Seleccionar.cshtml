@@ -1,0 +1,119 @@
+@model AlmacenDatos
+@{
+    ViewData["Title"] = "Seleccionar mision";
+}
+
+<h2>Seleccionar mision</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alerta alerta-error">@TempData["Error"]</div>
+}
+
+@if (Model.Ciudades.Longitud == 0 || Model.Robots.Longitud == 0)
+{
+    <div class="alerta alerta-error">
+        Debe cargar primero un archivo de configuracion con al menos una ciudad y un robot.
+        <a href="@Url.Action("Cargar", "Configuracion")">Ir a cargar configuracion</a>
+    </div>
+}
+else
+{
+    <form method="post" action="@Url.Action("Ejecutar")" id="formMision">
+        <div class="campo">
+            <label>Tipo de mision</label>
+            <select name="tipoMision" id="tipoMision" required>
+                <option value="rescate">Rescate</option>
+                <option value="extraccion">Extraccion de recursos</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Ciudad</label>
+            <select name="nombreCiudad" id="nombreCiudad" required>
+                <option value="">-- Seleccione una ciudad --</option>
+                @for (int i = 0; i < Model.Ciudades.Longitud; i++)
+                {
+                    var ciudad = Model.Ciudades[i];
+                    <option value="@ciudad.Nombre">@ciudad.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Robot</label>
+            <select name="nombreRobot" id="nombreRobot" required>
+                <option value="">-- Seleccione un robot --</option>
+                @for (int i = 0; i < Model.Robots.Longitud; i++)
+                {
+                    var robot = Model.Robots[i];
+                    <option value="@robot.Nombre" data-tipo="@robot.Tipo">
+                        @robot.Nombre (@robot.Tipo@(robot is RobotFighter rf ? $" - capacidad {rf.CapacidadCombate}" : ""))
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Objetivo (unidad civil o recurso)</label>
+            <select name="objetivoSeleccionado" id="objetivo" required></select>
+            <input type="hidden" name="filaObjetivo" id="filaObjetivo" />
+            <input type="hidden" name="columnaObjetivo" id="columnaObjetivo" />
+        </div>
+
+        <button type="submit" class="boton">Ejecutar mision</button>
+    </form>
+}
+
+@section Scripts {
+<script>
+    async function actualizarObjetivos() {
+        const ciudad = document.getElementById('nombreCiudad').value;
+        const tipoMision = document.getElementById('tipoMision').value;
+        const selectObjetivo = document.getElementById('objetivo');
+        selectObjetivo.innerHTML = '';
+        if (!ciudad) return;
+
+        const resp = await fetch(`/Misiones/ObtenerDetalleCiudad?nombreCiudad=${encodeURIComponent(ciudad)}&tipoMision=${tipoMision}`);
+        const datos = await resp.json();
+
+        if (datos.length === 0) {
+            const opcion = document.createElement('option');
+            opcion.textContent = 'No hay objetivos disponibles en esta ciudad';
+            opcion.disabled = true;
+            selectObjetivo.appendChild(opcion);
+            return;
+        }
+
+        datos.forEach(d => {
+            const opcion = document.createElement('option');
+            opcion.value = `${d.fila},${d.columna}`;
+            opcion.textContent = `Fila ${d.fila + 1}, Columna ${d.columna + 1}`;
+            selectObjetivo.appendChild(opcion);
+        });
+        actualizarCamposOcultos();
+    }
+
+    function actualizarCamposOcultos() {
+        const valor = document.getElementById('objetivo').value;
+        if (!valor) return;
+        const [f, c] = valor.split(',');
+        document.getElementById('filaObjetivo').value = f;
+        document.getElementById('columnaObjetivo').value = c;
+    }
+
+    document.getElementById('nombreCiudad')?.addEventListener('change', actualizarObjetivos);
+    document.getElementById('tipoMision')?.addEventListener('change', actualizarObjetivos);
+    document.getElementById('objetivo')?.addEventListener('change', actualizarCamposOcultos);
+
+    document.getElementById('formMision')?.addEventListener('submit', function (e) {
+        actualizarCamposOcultos();
+        const tipoRobotEsperado = document.getElementById('tipoMision').value === 'rescate' ? 'ChapinRescue' : 'ChapinFighter';
+        const opcionRobot = document.getElementById('nombreRobot').selectedOptions[0];
+        if (opcionRobot && opcionRobot.dataset.tipo !== tipoRobotEsperado) {
+            e.preventDefault();
+            alert('El robot seleccionado no corresponde con el tipo de mision elegido.');
+        }
+    });
+</script>
+}

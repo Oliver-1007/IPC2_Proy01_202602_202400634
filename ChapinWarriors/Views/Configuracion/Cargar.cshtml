@@ -1,0 +1,61 @@
+@model AlmacenDatos
+@{
+    ViewData["Title"] = "Cargar configuracion";
+}
+
+<h2>Cargar archivo de configuracion</h2>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alerta alerta-exito">@ViewBag.Mensaje</div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alerta alerta-error">@ViewBag.Error</div>
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="campo">
+        <label>Archivo XML de configuracion</label>
+        <input type="file" name="archivoXml" accept=".xml" required />
+    </div>
+    <button type="submit" class="boton">Cargar</button>
+</form>
+
+<h3>Ciudades cargadas (@Model.Ciudades.Longitud)</h3>
+@if (Model.Ciudades.Longitud == 0)
+{
+    <p class="texto-tenue">Todavia no se ha cargado ninguna ciudad.</p>
+}
+else
+{
+    <table class="tabla-datos">
+        <tr><th>Nombre</th><th>Filas</th><th>Columnas</th></tr>
+        @for (int i = 0; i < Model.Ciudades.Longitud; i++)
+        {
+            var ciudad = Model.Ciudades[i];
+            <tr><td>@ciudad.Nombre</td><td>@ciudad.Filas</td><td>@ciudad.Columnas</td></tr>
+        }
+    </table>
+}
+
+<h3>Robots cargados (@Model.Robots.Longitud)</h3>
+@if (Model.Robots.Longitud == 0)
+{
+    <p class="texto-tenue">Todavia no se ha cargado ningun robot.</p>
+}
+else
+{
+    <table class="tabla-datos">
+        <tr><th>Nombre</th><th>Tipo</th><th>Capacidad de combate</th></tr>
+        @for (int i = 0; i < Model.Robots.Longitud; i++)
+        {
+            var robot = Model.Robots[i];
+            <tr>
+                <td>@robot.Nombre</td>
+                <td>@robot.Tipo</td>
+                <td>@(robot is RobotFighter rf ? rf.CapacidadCombate.ToString() : "-")</td>
+            </tr>
+        }
+    </table>
+}
