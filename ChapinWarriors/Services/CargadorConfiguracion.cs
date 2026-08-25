@@ -1,4 +1,5 @@
 
+using System;
 using System.Xml.Linq;
 using ChapinWarriors.Models.Entidades;
 using ChapinWarriors.Models.TDA;
@@ -45,7 +46,7 @@ namespace ChapinWarriors.Services
             
             for (int f = 0; f < filas; f++)
             {
-                var filaLista = new ListaSimple<Celda>();
+                var filaLista = new ListaSimple();
                 for (int c = 0; c < columnas; c++)
                 {
                     filaLista.Agregar(new Celda {Fila = f, Columna = c, Tipo = TipoCelda.Intransitable});
@@ -57,11 +58,11 @@ namespace ChapinWarriors.Services
             {
                 int numero = int.Parse(nodoFila.Attribute("numero")!.Value);
                 string contenido = LimpiarComillas(nodoFila.Value);
-                var filaCeldas = ciudad.Malla.Obtener(numero);
+                var filaCeldas = (ListaSimple)ciudad.Malla.Obtener(numero);
 
                 for(int c = 0; c < columnas && c < contenido.Length; c++)
                 {
-                    var celda = filaCeldas.Obtener(c);
+                    var celda = (Celda)filaCeldas.Obtener(c);
                     celda.Tipo = InterpretarCaracter(contenido[c]);
                 }
             }

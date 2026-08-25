@@ -1,4 +1,5 @@
 
+using System;
 using System.Diagnostics;
 using System.Text;
 using ChapinWarriors.Models.Entidades;
@@ -117,7 +118,7 @@ namespace ChapinWarriors.Services
         {
             for (int i = 0; i < resultado.Ruta.Longitud; i++)
             {
-                var celda = resultado.Ruta[i];
+                var celda = (Celda)resultado.Ruta[i];
                 if (celda.Fila == f && celda.Columna == c) return true;
             }
             return false;

@@ -33,7 +33,7 @@ else
         <tr><th>Nombre</th><th>Filas</th><th>Columnas</th></tr>
         @for (int i = 0; i < Model.Ciudades.Longitud; i++)
         {
-            var ciudad = Model.Ciudades[i];
+            var ciudad = (Ciudad)Model.Ciudades[i];
             <tr><td>@ciudad.Nombre</td><td>@ciudad.Filas</td><td>@ciudad.Columnas</td></tr>
         }
     </table>
@@ -50,7 +50,7 @@ else
         <tr><th>Nombre</th><th>Tipo</th><th>Capacidad de combate</th></tr>
         @for (int i = 0; i < Model.Robots.Longitud; i++)
         {
-            var robot = Model.Robots[i];
+            var robot = (Robot)Model.Robots[i];
             <tr>
                 <td>@robot.Nombre</td>
                 <td>@robot.Tipo</td>

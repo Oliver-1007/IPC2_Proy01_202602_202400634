@@ -20,10 +20,6 @@ namespace ChapinWarriors.Controllers
         [HttpGet]
         public IActionResult Seleccionar() => View(_almacen);
 
-        /// <summary>
-        /// Devuelve en JSON las celdas objetivo disponibles (unidades civiles o recursos)
-        /// segun la ciudad y el tipo de mision elegidos. Se usa desde JavaScript en la vista.
-        /// </summary>
         [HttpGet]
         public IActionResult ObtenerDetalleCiudad(string nombreCiudad, string tipoMision)
         {
@@ -33,11 +29,11 @@ namespace ChapinWarriors.Controllers
             var tipoCelda = tipoMision == "rescate" ? TipoCelda.UnidadCivil : TipoCelda.Recurso;
             var celdas = ciudad.ObtenerCeldasPorTipo(tipoCelda);
 
-            var lista = new List<object>();
+            var lista = new object[celdas.Longitud];
             for (int i = 0; i < celdas.Longitud; i++)
             {
-                var celda = celdas[i];
-                lista.Add(new { fila = celda.Fila, columna = celda.Columna });
+                var celda = (Celda)celdas[i];
+                lista[i] = new { fila = celda.Fila, columna = celda.Columna };
             }
 
             return Json(lista);

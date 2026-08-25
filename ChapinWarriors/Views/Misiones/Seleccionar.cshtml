@@ -34,7 +34,7 @@ else
                 <option value="">-- Seleccione una ciudad --</option>
                 @for (int i = 0; i < Model.Ciudades.Longitud; i++)
                 {
-                    var ciudad = Model.Ciudades[i];
+                    var ciudad = (Ciudad)Model.Ciudades[i];
                     <option value="@ciudad.Nombre">@ciudad.Nombre</option>
                 }
             </select>
@@ -46,7 +46,7 @@ else
                 <option value="">-- Seleccione un robot --</option>
                 @for (int i = 0; i < Model.Robots.Longitud; i++)
                 {
-                    var robot = Model.Robots[i];
+                    var robot = (Robot)Model.Robots[i];
                     <option value="@robot.Nombre" data-tipo="@robot.Tipo">
                         @robot.Nombre (@robot.Tipo@(robot is RobotFighter rf ? $" - capacidad {rf.CapacidadCombate}" : ""))
                     </option>

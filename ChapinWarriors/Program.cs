@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using ChapinWarriors.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,10 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<AlmacenDatos>();
-builder.Services.AddSingleton<CargadorConfiguracion>();
-builder.Services.AddSingleton<MotorMisiones>();
-builder.Services.AddSingleton<GeneradorGraphviz>();
+builder.Services.AddSingleton(typeof(AlmacenDatos));
+builder.Services.AddSingleton(typeof(CargadorConfiguracion));
+builder.Services.AddSingleton(typeof(MotorMisiones));
+builder.Services.AddSingleton(typeof(GeneradorGraphviz));
 
 var app = builder.Build();
 

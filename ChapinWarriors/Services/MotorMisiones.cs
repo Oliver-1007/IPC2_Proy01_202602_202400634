@@ -34,7 +34,7 @@ namespace ChapinWarriors.Services
 
             for(int i = 0; i < puntosEntrada.Longitud;i++)
             {
-                var entrada = puntosEntrada[i];
+                var entrada = (Celda)puntosEntrada[i];
                 var ruta = BuscarCaminoSimple(ciudad, entrada, civilObjetivo);
                 if(ruta != null)
                 {
@@ -51,19 +51,19 @@ namespace ChapinWarriors.Services
 
         // Funcion que busca caminos transitables sin repetir ninguna hasta
         // llegar al punto civil
-        private ListaSimple<Celda>? BuscarCaminoSimple(Ciudad ciudad, Celda inicio, Celda objetivo)
+        private ListaSimple? BuscarCaminoSimple(Ciudad ciudad, Celda inicio, Celda objetivo)
         {
             bool[,] visitado = new bool[ciudad.Filas, ciudad.Columnas];
             (int f, int c)[,] previo = new (int, int)[ciudad.Filas, ciudad.Columnas];
 
-            var cola = new ListaSimple<(int f, int c)>();
+            var cola = new ListaSimple();
             visitado[inicio.Fila, inicio.Columna] = true;
             cola.Agregar((inicio.Fila, inicio.Columna));
             int indice = 0;
 
             while (indice < cola.Longitud)
             {
-                var actual = cola.Obtener(indice);
+                var actual = ((int f, int c))cola.Obtener(indice);
                 indice++;
 
                 if (actual.f == objetivo.Fila && actual.c == objetivo.Columna)
@@ -119,12 +119,12 @@ namespace ChapinWarriors.Services
                 return resultado;
             }
 
-            ListaSimple<Celda>? mejorRuta = null;
+            ListaSimple? mejorRuta = null;
             int mejorCapacidadFinal = -1;
 
             for (int i = 0; i < puntosEntrada.Longitud; i++)
             {
-                var entrada = puntosEntrada[i];
+                var entrada = (Celda)puntosEntrada[i];
                 var (ruta, capacidadFinal) = BuscarCaminoConCombate(ciudad, entrada, recursoObjetivo, robot.CapacidadCombate);
                 if (ruta != null && capacidadFinal > mejorCapacidadFinal)
                 {
@@ -147,7 +147,7 @@ namespace ChapinWarriors.Services
         }
 
         // Funcion que busca llegar al objetivo con la mayor capacidad de combate posible
-        private (ListaSimple<Celda>? ruta, int capacidadFinal) BuscarCaminoConCombate(
+        private (ListaSimple? ruta, int capacidadFinal) BuscarCaminoConCombate(
             Ciudad ciudad, Celda inicio, Celda objetivo, int capacidadInicial)
         {
             int[,] mejorCapacidad = new int[ciudad.Filas, ciudad.Columnas];
@@ -159,14 +159,14 @@ namespace ChapinWarriors.Services
             bool[,] enCola = new bool[ciudad.Filas, ciudad.Columnas];
 
             mejorCapacidad[inicio.Fila, inicio.Columna] = capacidadInicial;
-            var cola = new ListaSimple<(int f, int c)>();
+            var cola = new ListaSimple();
             cola.Agregar((inicio.Fila, inicio.Columna));
             enCola[inicio.Fila, inicio.Columna] = true;
             int indice = 0;
 
             while (indice < cola.Longitud)
             {
-                var actual = cola.Obtener(indice);
+                var actual = ((int f, int c))cola.Obtener(indice);
                 indice++;
                 enCola[actual.f, actual.c] = false;
                 int capacidadActual = mejorCapacidad[actual.f, actual.c];
@@ -212,9 +212,9 @@ namespace ChapinWarriors.Services
         }
 
         // Funcion que toma los datos dejados en "previo" para reconstruir la ruta hallada
-        private ListaSimple<Celda> ReconstruirRuta(Ciudad ciudad, (int f, int c)[,] previo, Celda inicio, Celda objetivo)
+        private ListaSimple ReconstruirRuta(Ciudad ciudad, (int f, int c)[,] previo, Celda inicio, Celda objetivo)
         {
-            var pila = new Pila<Celda>();
+            var pila = new Pila();
             var actual = (objetivo.Fila, objetivo.Columna);
 
             while (!(actual.Item1 == inicio.Fila && actual.Item2 == inicio.Columna))
@@ -224,9 +224,9 @@ namespace ChapinWarriors.Services
             }
             pila.Apilar(inicio);
 
-            var ruta = new ListaSimple<Celda>();
+            var ruta = new ListaSimple();
             while (!pila.EstaVacia)
-                ruta.Agregar(pila.Desapilar());
+                ruta.Agregar((Celda)pila.Desapilar());
 
             return ruta;
         }

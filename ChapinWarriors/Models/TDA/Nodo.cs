@@ -1,14 +1,12 @@
 
-
-
 namespace ChapinWarriors.Models.TDA
 {
-    public class Nodo<T>
+    public class Nodo
     {
-        public T Dato {get; set;}
-        public Nodo<T>? Siguiente {get; set;}
+        public object Dato {get; set;}
+        public Nodo? Siguiente {get; set;}
 
-        public Nodo(T dato)
+        public Nodo(object dato)
         {
             Dato = dato;
             Siguiente = null;

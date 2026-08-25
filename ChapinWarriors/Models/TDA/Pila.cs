@@ -1,24 +1,26 @@
 
+using System;
+
 // TDA DEL TIPO PILA -------------------------------------------------------------------------
 
 namespace ChapinWarriors.Models.TDA
 {
-    public class Pila<T>
+    public class Pila
     {
-        private Nodo<T>? tope;
+        private Nodo? tope;
         private int longitud;
 
         public int Longitud => longitud;
         public bool EstaVacia => longitud == 0;
 
-        public void Apilar(T dato)
+        public void Apilar(object dato)
         {
-            var nuevo = new Nodo<T>(dato) {Siguiente = tope};
+            var nuevo = new Nodo(dato) {Siguiente = tope};
             tope = nuevo;
             longitud++;
         }
 
-        public T Desapilar()
+        public object Desapilar()
         {
             if(tope == null) throw new InvalidOperationException("La pila esta vacia.");
             var dato = tope.Dato;
@@ -27,7 +29,7 @@ namespace ChapinWarriors.Models.TDA
             return dato;
         }
 
-        public T VerTope()
+        public object VerTope()
         {
             if(tope == null) throw new InvalidOperationException("La pila está vacia.");
             return tope.Dato;

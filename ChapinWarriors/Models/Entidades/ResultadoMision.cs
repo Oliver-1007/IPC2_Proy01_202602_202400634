@@ -11,8 +11,8 @@ namespace ChapinWarriors.Models.Entidades
         public string RobotUtilizado {get; set;} = "";
         public int CapacidadInicial {get; set;}
         public int CapacidadFinal {get; set;}
-        public ListaSimple<Celda> Ruta {get; set;} = new();
+        public ListaSimple Ruta {get; set;} = new();
         public Celda? Objetivo {get; set;}
-        public String Mensaje {get; set;} = "";
+        public string Mensaje {get; set;} = "";
     }
 }

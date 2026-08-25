@@ -7,14 +7,14 @@ namespace ChapinWarriors.Services
 {
     public class AlmacenDatos
     {
-        public ListaSimple<Ciudad> Ciudades {get;} = new();
-        public ListaSimple<Robot> Robots {get;} = new();
+        public ListaSimple Ciudades {get;} = new();
+        public ListaSimple Robots {get;} = new();
 
         public void RegistrarCiudad(Ciudad ciudad)
         {
             for(int i = 0; i < Ciudades.Longitud; i++)
             {
-                if(Ciudades.Obtener(i).Nombre == ciudad.Nombre)
+                if(((Ciudad)Ciudades.Obtener(i)).Nombre == ciudad.Nombre)
                 {
                     Ciudades.Actualizar(i, ciudad);
                     return;
@@ -27,7 +27,7 @@ namespace ChapinWarriors.Services
         {
             for(int i = 0; i < Robots.Longitud; i++)
             {
-                if(Robots.Obtener(i).Nombre == robot.Nombre)
+                if(((Robot)Robots.Obtener(i)).Nombre == robot.Nombre)
                 {
                     Robots.Actualizar(i, robot);
                     return;
@@ -36,7 +36,7 @@ namespace ChapinWarriors.Services
             Robots.Agregar(robot);
         }
 
-        public Ciudad? BuscarCiudad(string nombre) => Ciudades.Buscar(c => c.Nombre == nombre);
-        public Robot? BuscarRobot(string nombre) => Robots.Buscar(r=> r.Nombre == nombre);
+        public Ciudad? BuscarCiudad(string nombre) => (Ciudad?)Ciudades.Buscar(c => ((Ciudad)c).Nombre == nombre);
+        public Robot? BuscarRobot(string nombre) => (Robot?)Robots.Buscar(r => ((Robot)r).Nombre == nombre);
     }
 }

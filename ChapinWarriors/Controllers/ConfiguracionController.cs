@@ -1,4 +1,7 @@
+using System;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using ChapinWarriors.Services;
 
 namespace ChapinWarriors.Controllers
@@ -18,7 +21,7 @@ namespace ChapinWarriors.Controllers
         public IActionResult Cargar() => View(_almacen);
 
         [HttpPost]
-        public async Task<IActionResult> Cargar(IFormFile archivoXml)
+        public IActionResult Cargar(IFormFile archivoXml)
         { 
             if (archivoXml == null || archivoXml.Length == 0)
             {
@@ -31,7 +34,7 @@ namespace ChapinWarriors.Controllers
             {
                 using (var flujo = new FileStream(rutaTemporal, FileMode.Create))
                 {
-                    await archivoXml.CopyToAsync(flujo);
+                    archivoXml.CopyTo(flujo);
                 }
 
                 _cargador.CargarDesdeXml(rutaTemporal, _almacen);

@@ -1,26 +1,28 @@
 
-
+using System;
 
 namespace ChapinWarriors.Models.TDA
 {
-    public class ListaSimple<T>
+    public delegate bool CriterioBusqueda(object dato);
+
+    public class ListaSimple
     {
-        private Nodo<T>? Cabeza;
-        private Nodo<T>? Cola;
+        private Nodo? Cabeza;
+        private Nodo? Cola;
         private int longitud;
 
         public int Longitud => longitud;
         public bool EstaVacia => longitud == 0;
 
-        public T this[int indice]
+        public object this[int indice]
         {
             get => Obtener(indice);
             set => Actualizar(indice, value);
         }
 
-        public void Agregar(T dato)
+        public void Agregar(object dato)
         {
-            var nuevo = new Nodo<T>(dato);
+            var nuevo = new Nodo(dato);
             if(Cabeza == null)
             {
                 Cabeza = nuevo;
@@ -34,19 +36,19 @@ namespace ChapinWarriors.Models.TDA
             longitud++;
         }
 
-        public T Obtener(int indice)
+        public object Obtener(int indice)
         {
             var nodo = ObtenerNodo(indice);
             return nodo.Dato;
         }
 
-        public void Actualizar(int indice, T valor)
+        public void Actualizar(int indice, object valor)
         {
             var nodo = ObtenerNodo(indice);
             nodo.Dato = valor;
         }
 
-        private Nodo<T> ObtenerNodo(int indice)
+        private Nodo ObtenerNodo(int indice)
         {
             if(indice < 0 || indice >= longitud)
             {
@@ -60,7 +62,7 @@ namespace ChapinWarriors.Models.TDA
             return actual!;
         }
 
-        public T? Buscar(Func<T, bool> criterio)
+        public object? Buscar(CriterioBusqueda criterio)
         {
             var actual = Cabeza;
             while (actual != null)

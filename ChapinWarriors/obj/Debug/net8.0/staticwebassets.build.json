@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6UpzG115L8/fHga4ADrPaH9euFj/EMeRfeQ0g6VTBNA=",
+  "Hash": "YZA5sDSYJwk5+DzhsJ9a4FpU/CZ6U7iz4KqyUm/9bXo=",
   "Source": "ChapinWarriors",
   "BasePath": "_content/ChapinWarriors",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\raxtu\\IPC2_Proy01_202602_202400634\\ChapinWarriors\\wwwroot\\favicon.ico",
+      "SourceId": "ChapinWarriors",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\raxtu\\IPC2_Proy01_202602_202400634\\ChapinWarriors\\wwwroot\\",
+      "BasePath": "_content/ChapinWarriors",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
     }
   ]
 }
